@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie and Clown Audio</title>
+</head>
+<body>
+    <audio id="clownAmbient" src="../sounds/clown_ambient.ogg" preload="auto" loop></audio>
+
+    <script>
+
+        function playClownAmbient() {
+            const ambient = document.getElementById('clownAmbient');
+            ambient.currentTime = 0;
+            ambient.play();
+        }
+
+        function stopClownAmbient() {
+            const ambient = document.getElementById('clownAmbient');
+            ambient.pause();
+            ambient.currentTime = 0;
+        }
+
+
+        // Nasłuchuje zdarzeń z Lua
+        window.addEventListener('message', function(event) {
+            if (event.data.action === "playClownAmbient") {
+                playClownAmbient();
+            }
+            if (event.data.action === "stopClownAmbient") {
+                stopClownAmbient();
+            }
+        });
+    </script>
+</body>
+</html>
